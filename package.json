@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9",
+    "nodemon": "^2.0.15"
+  },
+  "name": "booking-ticket-backend",
+  "version": "1.0.0",
+  "description": "all data is save for ticket",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SayeedMahdi/Booking-ticket-backend.git"
+  },
+  "author": "Sayeed Mahdi Mousavi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SayeedMahdi/Booking-ticket-backend/issues"
+  },
+  "homepage": "https://github.com/SayeedMahdi/Booking-ticket-backend#readme"
+}
