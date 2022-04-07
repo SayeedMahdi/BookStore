@@ -1,7 +1,7 @@
 const modelbook = require("../Models/BooksModel");
 const asyncWrapper = require("../middlewares/async");
 const insertbook = asyncWrapper(async (req, res) => {
-  const { name, price, description, author, url } = req.body;
+  const { name, price, description, author, url } = req.body.data;
   console.log( req.body);
   const result = await modelbook.create({
     name,
