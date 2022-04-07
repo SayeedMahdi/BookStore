@@ -2,7 +2,7 @@ const modelbook = require("../Models/BooksModel");
 const asyncWrapper = require("../middlewares/async");
 const insertbook = asyncWrapper(async (req, res) => {
   const { name, price, description, author, url } = req.body.data;
-  console.log( req.body);
+  
   const result = await modelbook.create({
     name,
     price,
@@ -18,7 +18,7 @@ const Allbooks = asyncWrapper(async (req, res) => {
 });
 const search = asyncWrapper(async (req, res) => {
   //this is the object indepentent
-  var { value } = req.query;
+  var { value } = req.query.data;
   
   
   const result = await modelbook.find({
