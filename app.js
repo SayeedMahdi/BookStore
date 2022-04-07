@@ -5,7 +5,9 @@ const notFound = require("./middlewares/404not-exist");
 const DB = require("./dbConection/Db");
 const route = require("./routes/routes");
 const erroHandle = require("./middlewares/errorHandle")
-
+app.use("/",(req,res)=>{
+  res.send("<h1>Hello world</h1>");
+} );
 
 require("dotenv").config();
 app.use(erroHandle)
