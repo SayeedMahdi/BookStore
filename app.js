@@ -9,9 +9,7 @@ const erroHandle = require("./middlewares/errorHandle");
 require("dotenv").config();
 app.use(erroHandle);
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-}) 
+
 app.use("/api/v1", route);
 //midlle wares
 app.use(express.json());
