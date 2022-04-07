@@ -14,7 +14,7 @@ const insertbook = asyncWrapper(async (req, res) => {
 });
 const Allbooks = asyncWrapper(async (req, res) => {
   const tasks = await modelbook.find({});
-  res.status(200).json({ tasks });
+  res.status(200).json( tasks );
 });
 const search = asyncWrapper(async (req, res) => {
   //this is the object indepentent
