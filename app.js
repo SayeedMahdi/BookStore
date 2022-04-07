@@ -15,7 +15,7 @@ app.use("/api/v1", route);
 app.use(express.json());
 const port = process.env.PORT || 4000;
 const mongoose_URI =
-  "mongodb://localhost/Booking-tickets" || process.env.MONGO_URI ;
+  process.env.MONGO_URI ;
 const start = async () => {
   try {
     await DB(mongoose_URI);
