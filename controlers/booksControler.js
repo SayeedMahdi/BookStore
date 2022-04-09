@@ -18,7 +18,8 @@ const Allbooks = asyncWrapper(async (req, res) => {
 });
 const search = asyncWrapper(async (req, res) => {
   //this is the object indepentent
-  var  value  = req.query;
+  var { value}  = req.query;
+  console.log("'vle..........................",value);
   const result = await modelbook.find({
     $or: [
       { name: { $regex: value, $options: "i" } },
