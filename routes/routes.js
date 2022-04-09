@@ -5,7 +5,7 @@ router.get("/home",(req,res)=>{
 }
 );
 
-router.route("/Book").post(controler.insertbook).get(controler.Allbooks);
+router.route("/Book").post(controler.insertbook).get(controler.Allbooks).delete(controler.delet);
 router.route("/Book/search").get(controler.search);
 
 module.exports =router;
