@@ -1,11 +1,13 @@
 const router = require("express").Router();
-const controler = require("../controlers/booksControler");
-router.get("/home",(req,res)=>{
-    res.send("welcome home");
-}
-);
+const BookControler = require("../controlers/booksControler");
+const userConteroler = require("../controlers/userControler");
 
-router.route("/Book").post(controler.insertbook).get(controler.Allbooks).delete(controler.delet);
-router.route("/Book/search").get(controler.search);
+router
+  .route("/Book")
+  .post(BookControler.insertbook)
+  .get(BookControler.Allbooks)
+  .delete(BookControler.delet);
+router.route("/Book/search").get(BookControler.search);
+router.route("/User").post(userConteroler.insertUser);
 
-module.exports =router;
+module.exports = router;

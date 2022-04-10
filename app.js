@@ -9,14 +9,14 @@ const erroHandle = require("./middlewares/errorHandle");
 require("dotenv").config();
 app.use(erroHandle);
 app.use(express.json());
-const cors = require('cors')
+const cors = require("cors");
 
-app.use(cors())
+app.use(cors());
 
-app.get('/cors', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.send({ "msg": "This has CORS enabled 🎈" })
-  })
+app.get("/cors", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.send({ msg: "This has CORS enabled 🎈" });
+});
 
 app.use("/api/v1", route);
 //midlle wares
