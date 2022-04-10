@@ -11,7 +11,7 @@ const insertUser = middlewares(async (req, res) => {
 
   const email = req.body.email;
   console.log("email",email);
-  const {password} = req.body.password;
+  const password = req.body.password;
 console.log("password",password);
  
 
