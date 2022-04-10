@@ -8,10 +8,10 @@ const salt = bcrypt.genSaltSync(10);
 const insertUser = middlewares(async (req, res) => {
 
     console.log(req.body);
-
-  const email = req.body.email;
+const {email,password} =req.body.data;
+  
   console.log("email",email);
-  const password = req.body.password;
+  
 console.log("password",password);
  
 
