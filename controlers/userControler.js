@@ -10,9 +10,10 @@ const insertUser = middlewares(async (req, res) => {
     console.log(req.body.body);
 
   const email = req.body.body.email;
+  console.log("email",email);
   const password = req.body.body.password;
-
-  console.log("email:  password:",email,password);
+console.log("password",password);
+ 
 
   const hashOne = await bcrypt.hash(password, salt);
   console.log(hashOne);
