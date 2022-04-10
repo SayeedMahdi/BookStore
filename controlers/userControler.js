@@ -6,6 +6,8 @@ const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 
 const insertUser = middlewares(async (req, res) => {
+    const value = req.body;
+    console.log(value);
   const email = req.body.email;
   const password = req.body.password;
   const hashOne = await bcrypt.hash(password, salt);
