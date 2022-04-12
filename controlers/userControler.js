@@ -13,9 +13,9 @@ const insertUser = middlewares(async (req, res) => {
 
   const valid = validator.isEmail(email);
   const user =await userMode.exists({ email: email }).select("email").lean();
-  
+  console.log(email,password);
   if(user){
-    res.status(409).json("Email exist in database");
+    res.status(409).json({result:"Email exist in database"});
   }
 
   else if (valid ) {
