@@ -9,13 +9,13 @@ const salt = bcrypt.genSaltSync(10);
 //insert new user
 const insertUser = middlewares(async (req, res) => {
   
-  const { email, password } = req.body;
+  const { email, password } = req.body.data;
 
   const valid = validator.isEmail(email);
-  const findEmail = userMode.find({ email: email });
-  console.log(findEmail);
-  if(findEmail === email){
-    res.status(404).json("Email exist in database");
+  const user =await userMode.exists({ email: email }).select("email").lean();
+  
+  if(user){
+    res.status(409).json("Email exist in database");
   }
 
   else if (valid ) {
