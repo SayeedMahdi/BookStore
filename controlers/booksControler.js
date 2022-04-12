@@ -38,7 +38,7 @@ const delet = asyncWrapper(async (req, res) => {
   if (!result) {
     res.status(404);
   }
-  res.status(200).send(result);
+  res.status(200).json(result);
 });
 module.exports = {
   insertbook,

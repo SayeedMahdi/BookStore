@@ -8,6 +8,6 @@ router
   .get(BookControler.Allbooks)
   .delete(BookControler.delet);
 router.route("/Book/search").get(BookControler.search);
-router.route("/User").post(userConteroler.insertUser);
+router.route("/User").post(userConteroler.insertUser).post(userConteroler.login);
 
 module.exports = router;
