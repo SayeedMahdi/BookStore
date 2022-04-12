@@ -33,7 +33,8 @@ const search = asyncWrapper(async (req, res) => {
 });
 // delet tasks
 const delet = asyncWrapper(async (req, res) => {
-  const id = req.query.id;
+  const id = req.query._id;
+  console.log(req.query);
   const result = await modelbook.findOneAndDelete({ _id: id });
   if (!result) {
     res.status(404);
