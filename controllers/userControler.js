@@ -32,14 +32,14 @@ const login = middlewares(async(req, res) => {
   const { email, password } = req.body;
   
   const user =await emailMidlewares.userExist(email);
-  console.log(user);
+
   const confirmPassword =await  emailMidlewares.comare(password,user.password);
   if(user && confirmPassword){
     const makeHash = emailMidlewares.makeHash(password);
     const token = emailMidlewares.makeToken(email,makeHash);
     res.status(200).json(token);
   }else{
-  res.status(500).json("someThing went wrong!");
+  res.status(404).json("someThing went wrong!");
   }
 });
 
