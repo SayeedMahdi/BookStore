@@ -10,8 +10,20 @@ const valid = (email) => {
   return validator.isEmail(email);
 };
 const makeToken = (email, password,username) => {
-  return jwt.sign({ email, password,username }, secret);
+  return jwt.sign({ email, password,username }, secret, {
+    expiresIn: "10h" });
 };
+
+const verify =async  (res,token) => {
+  try{
+    const result =await jwt.verify(token,secret);
+    console.log(result);
+     return result;
+  }catch(err){
+   res.status(400).send("somthing is wrong");
+  }
+     
+}
 
 //method for hashing
 const makeHash =(password) =>{
@@ -24,8 +36,7 @@ const comare =(password,userPassword) =>{
 
 
 const userExist = (email) => {
-  const user = userModel.findOne({ email: email }).select("password").lean();
-
+  const user = userModel.findOne({ email: email }).select("password email username").lean();
   return user;
 };
 
@@ -34,5 +45,6 @@ module.exports = {
   userExist,
   makeToken,
   makeHash,
-  comare
+  comare,
+  verify
 };

@@ -21,6 +21,7 @@ const valid = emailMidlewares.valid(email);
       password: hashOne,
       username:username
     });
+    
     res.status(200).json({ token: token });
   } else {
     res.status(400).json("not valid email or email exist .");
@@ -29,9 +30,9 @@ const valid = emailMidlewares.valid(email);
 
 const login = middlewares(async(req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
-  const user =await emailMidlewares.userExist(email);
   
+  const user =await emailMidlewares.userExist(email);
+  console.log(user);
   const confirmPassword =await  emailMidlewares.comare(password,user.password);
   if(user && confirmPassword){
     const makeHash = emailMidlewares.makeHash(password);
