@@ -1,8 +1,10 @@
 const modelbook = require("../Models/BooksModel");
 const asyncWrapper = require("../middlewares/async");
 const insertbook = asyncWrapper(async (req, res) => {
-  const { name, price, description, author, url } = req.body.data;
+  const { name, price, description, author, url } = req.body;
 
+
+  //create Book route
   const result = await modelbook.create({
     name,
     price,
@@ -16,6 +18,8 @@ const Allbooks = asyncWrapper(async (req, res) => {
   const tasks = await modelbook.find({});
   res.status(200).json(tasks);
 });
+
+//search api books
 const search = asyncWrapper(async (req, res) => {
   //this is the object indepentent
   var { value } = req.query;
@@ -31,8 +35,9 @@ const search = asyncWrapper(async (req, res) => {
   });
   res.status(200).json(result);
 });
+
 // delet tasks
-const delet = asyncWrapper(async (req, res) => {
+const deletebook = asyncWrapper(async (req, res) => {
   const id = req.query._id;
   console.log(req.query);
   const result = await modelbook.findOneAndDelete({ _id: id });
@@ -41,9 +46,11 @@ const delet = asyncWrapper(async (req, res) => {
   }
   res.status(200).json(result);
 });
+
+//exports
 module.exports = {
   insertbook,
   Allbooks,
   search,
-  delet,
+  deletebook
 };

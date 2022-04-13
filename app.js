@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const notFound = require("./middlewares/404not-exist");
-const DB = require("./dbConection/Db");
+const DB = require("./Database/Db");
 const route = require("./routes/routes");
 const erroHandle = require("./middlewares/errorHandle");
 
