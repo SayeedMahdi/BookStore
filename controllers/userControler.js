@@ -21,7 +21,7 @@ const valid = emailMidlewares.valid(email);
       password: hashOne,
       username:username
     });
-    res.status(200).json({ result, token });
+    res.status(200).json({ token: token });
   } else {
     res.status(400).json("not valid email or email exist .");
   }
