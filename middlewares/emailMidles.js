@@ -35,9 +35,14 @@ const comare =(password,userPassword) =>{
 }
 
 
-const userExist = (email) => {
-  const user = userModel.findOne({ email: email }).select("password email username").lean();
+const userExist =async (email,res) => {
+  const user = await userModel.findOne({ email: email }).select("password email username").lean();
+  console.log(user);
+  if(user){
   return user;
+  }else{
+    res.status(404).json("not found");
+  }
 };
 
 module.exports = {
