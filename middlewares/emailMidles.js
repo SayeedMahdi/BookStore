@@ -20,7 +20,7 @@ const verify =async  (res,token) => {
     console.log(result);
      return result;
   }catch(err){
-   res.status(400).send("somthing is wrong");
+   res.status(400).send("wrong token passed");
   }
      
 }
@@ -35,14 +35,9 @@ const comare =(password,userPassword) =>{
 }
 
 
-const userExist =async (email,res) => {
-  const user = await userModel.findOne({ email: email }).select("password email username").lean();
-  console.log(user);
-  if(user){
+const userExist =async (email) => {
+  const user = await userModel.findOne({ email: email }).select("password email username").lean(); 
   return user;
-  }else{
-    res.status(404).json("not found");
-  }
 };
 
 module.exports = {

@@ -8,7 +8,7 @@ const insertUser = middlewares(async (req, res) => {
 const { email, password,username } = req.body;
 const valid = emailMidlewares.valid(email);
   
-  const user = await emailMidlewares.userExist(email,res);
+  const user = await emailMidlewares.userExist(email);
 //cheak if user exist
   if (user) {
     res.status(409).json({ result: "Email exist in database" });
@@ -22,25 +22,30 @@ const valid = emailMidlewares.valid(email);
       username:username
     });
     
-    res.status(200).json({ token: token });
+    res.status(201).json({ token: token });
   } else {
     res.status(400).json("not valid email or email exist .");
   }
 });
 
 const login = middlewares(async(req, res) => {
-  const { email, password } = req.body;
-  
-  const user =await emailMidlewares.userExist(email,res);
-  console.log("nod",user);
-  const confirmPassword =await  emailMidlewares.comare(password,user.password);
-  if(user && confirmPassword){
-    const makeHash = emailMidlewares.makeHash(password);
-    const token = emailMidlewares.makeToken(email,makeHash);
-    res.status(200).json(token);
-  }else{
-  res.status(404).json("not found!");
-  }
+
+    const { email, password } = req.body;
+    const user =await emailMidlewares.userExist(email);
+    if(user ){
+      const confirmPassword =await  emailMidlewares.comare(password,user.password);
+      if(confirmPassword){
+      const makeHash = emailMidlewares.makeHash(password);
+      const token = emailMidlewares.makeToken(email,makeHash);
+      res.status(200).json(token);
+      }else{
+        res.status(404);
+      }
+    }else{
+    res.status(404).json("not found!");
+    }
+ 
+
 });
 
 //login in user
