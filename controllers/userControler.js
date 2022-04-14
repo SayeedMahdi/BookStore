@@ -39,7 +39,7 @@ const login = middlewares(async(req, res) => {
     const token = emailMidlewares.makeToken(email,makeHash);
     res.status(200).json(token);
   }else{
-  res.status(404).json("someThing went wrong!");
+  res.status(404).json("not found!");
   }
 });
 

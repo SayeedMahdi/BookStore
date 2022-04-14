@@ -46,11 +46,16 @@ const deletebook = asyncWrapper(async (req, res) => {
   }
   res.status(200).json(result);
 });
+//buy book
+const buyBook = asyncWrapper((req,res) =>{
+  res.send("good sells");
+});
 
 //exports
 module.exports = {
   insertbook,
   Allbooks,
   search,
-  deletebook
+  deletebook,
+  buyBook
 };
