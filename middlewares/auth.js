@@ -13,7 +13,7 @@ const authControl =asyncWrapper( async (req,res,next)=>{
         console.log(result);
      
     user =await userExist(result.email);
-     flag =await (result.password === user.password);
+     flag = (result.password === user.password);
    
     //show every thing is correct
     if(user && flag && result){

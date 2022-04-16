@@ -33,10 +33,12 @@ const login = middlewares(async(req, res) => {
     const { email, password } = req.body;
     const user =await emailMidlewares.userExist(email);
     if(user ){
+     
       const confirmPassword =await  emailMidlewares.comare(password,user.password);
       if(confirmPassword){
-      const makeHash = emailMidlewares.makeHash(password);
-      const token = emailMidlewares.makeToken(email,makeHash);
+      const makeHash =await emailMidlewares.makeHash(password);
+      console.log(makeHash);
+      const token = emailMidlewares.makeToken(email,makeHash,user.username);
       res.status(200).json(token);
       }else{
         res.status(404);
