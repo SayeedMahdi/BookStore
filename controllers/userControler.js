@@ -5,6 +5,7 @@ const emailMidlewares = require("../middlewares/emailMidles");
 
 //insert new user
 const insertUser = middlewares(async (req, res) => {
+console.log(req.body);
 const { email, password,username } = req.body;
 const valid = emailMidlewares.valid(email);
   
@@ -29,7 +30,7 @@ const valid = emailMidlewares.valid(email);
 });
 
 const login = middlewares(async(req, res) => {
-
+	console.log(req.body);
     const { email, password } = req.body;
     const user =await emailMidlewares.userExist(email);
     if(user ){
