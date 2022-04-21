@@ -16,5 +16,8 @@ router.route("/User/login").post(userConteroler.login);
 router.route("/buyBook").post(authControl,BookControler.buyBook)
 router.get("/download",(req,res) =>{
   res.download("../first home work.pdf","dowload.pdf");
+});
+router.get("/proxy",(req,res)=>{
+  console.log(req.ips);
 })
 module.exports = router;
