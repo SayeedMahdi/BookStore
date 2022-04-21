@@ -33,16 +33,17 @@ const login = middlewares(async(req, res) => {
 	console.log(req.body);
     const { email, password } = req.body;
     const user =await emailMidlewares.userExist(email);
+    
     if(user ){
-     
       const confirmPassword =await  emailMidlewares.comare(password,user.password);
+      console.log(confirmPassword)
       if(confirmPassword){
       const makeHash =await emailMidlewares.makeHash(password);
       console.log(makeHash);
       const token = emailMidlewares.makeToken(email,makeHash,user.username);
       res.status(200).json(token);
       }else{
-        res.status(404);
+        res.status(404).json("not found");
       }
     }else{
     res.status(404).json("not found!");
