@@ -16,12 +16,13 @@ const valid = emailMidlewares.valid(email);
   } else if (valid) {
    
     const hashOne =await emailMidlewares.makeHash(password);
-    const token = await emailMidlewares.makeToken(email, hashOne,username);
     const result = await modelUser.create({
       email: email,
       password: hashOne,
       username:username
     });
+    console.log(result);
+    const token = await emailMidlewares.makeToken(result._id,email, hashOne,username);
     
     res.status(201).json({ token: token });
   } else {

@@ -5,7 +5,8 @@ var flag;
 const asyncWrapper = require("../middlewares/async");
 const authControl =asyncWrapper( async (req,res,next)=>{
 
-    const {token} =await req.headers;
+    const {token} = req.headers;
+    console.log("the toke",token);
     //show token is exist or no
     if(token){
         const result =await verify(res,token);
@@ -19,7 +20,7 @@ const authControl =asyncWrapper( async (req,res,next)=>{
     if(user && flag && result){
         next();
     }else{
-        res.status(500).send("Somthing went wrong");
+        res.status(404).send("Somthing went wrong");
     }
     }else{
         res.status(403).send("you are not authorize")

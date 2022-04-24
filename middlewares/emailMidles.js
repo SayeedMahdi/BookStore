@@ -9,8 +9,8 @@ const secret = process.env.secret;
 const valid = (email) => {
   return validator.isEmail(email);
 };
-const makeToken = (email, password,username) => {
-  return jwt.sign({ email, password,username }, secret, {
+const makeToken = (id,email, password,username) => {
+  return jwt.sign({ id,email, password,username }, secret, {
     expiresIn: "10h" });
 };
 

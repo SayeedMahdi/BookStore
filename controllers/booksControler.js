@@ -1,5 +1,9 @@
 const modelbook = require("../Models/BooksModel");
 const asyncWrapper = require("../middlewares/async");
+const { verify, userExist } = require("../middlewares/emailMidles");
+const { default: mongoose } = require("mongoose");
+const buyBookModel = require("../Models/BuyModel");
+
 const insertbook = asyncWrapper(async (req, res) => {
   const { name, price, description, author, url } = req.body;
   console.log(req.body);
@@ -47,8 +51,21 @@ const deletebook = asyncWrapper(async (req, res) => {
   res.status(200).json(result);
 });
 //buy book
-const buyBook = asyncWrapper((req,res) =>{
-  const {name} =req.body;
+const buyBook = asyncWrapper(async (req, res) => {
+  const { phone, address, Book_id } = req.body;
+
+  const user = await verify(res, req.headers.token);
+  console.log("The user", user);
+ 
+    const books = await buyBookModel.create({
+      phone: phone,
+      address: address,
+      bookId: Book_id,
+      userId: user.id,
+    });
+    console.log(books);
+    res.status(200).json(books);
+   
 });
 
 //exports
@@ -57,5 +74,5 @@ module.exports = {
   Allbooks,
   search,
   deletebook,
-  buyBook
+  buyBook,
 };
