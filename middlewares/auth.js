@@ -25,7 +25,7 @@ const authControl = asyncWrapper(async (req, res, next) => {
     res.status(403).send("you are not authorize");
   }
 });
-const asyncWrapper = require("../middlewares/async");
+
 //admin auth
 const adminAuth = asyncWrapper(async (req, res, next) => {
   const { token } = req.headers;

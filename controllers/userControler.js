@@ -41,7 +41,7 @@ const login = middlewares(async(req, res) => {
       if(confirmPassword){
       const makeHash =await emailMidlewares.makeHash(password);
       console.log(makeHash);
-      const token = emailMidlewares.makeToken(email,makeHash,user.username);
+      const token = emailMidlewares.makeToken(user._id,email, user.password,user.username);
       res.status(200).json(token);
       }else{
         res.status(404).json("not found");
