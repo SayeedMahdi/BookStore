@@ -12,5 +12,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "you must enter a password"],
   },
+  role:{
+    type :Boolean,
+    default: false
+  }
 });
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("userModel", userSchema);
