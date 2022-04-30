@@ -45,6 +45,7 @@ const deletebook = asyncWrapper(async (req, res) => {
   const id = req.query._id;
   console.log(req.query);
   const result = await modelbook.findOneAndDelete({ _id: id });
+  console.log("book",result);
   if (!result) {
     res.status(404);
   }

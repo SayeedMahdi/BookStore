@@ -29,6 +29,7 @@ const authControl = asyncWrapper(async (req, res, next) => {
 //admin auth
 const adminAuth = asyncWrapper(async (req, res, next) => {
   const { token } = req.headers;
+  console.log(req.headers);
   //show token is exist or no
   if (token) {
     const result = await verify(res, token);
