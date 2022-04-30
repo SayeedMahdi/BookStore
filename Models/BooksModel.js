@@ -22,4 +22,4 @@ const bookSchema = new monogoose.Schema({
     }
 
 })
-module.exports = monogoose.model("Books",bookSchema);
+module.exports = monogoose.model("books",bookSchema);
