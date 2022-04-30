@@ -40,7 +40,7 @@ const adminAuth = asyncWrapper(async (req, res, next) => {
     if (user && flag && result && user.role) {
       next();
     } else {
-      res.status(404).send("Somthing went wrong");
+      res.status(403).send("Somthing went wrong");
     }
   } else {
     res.status(403).send("you are not authorize");
