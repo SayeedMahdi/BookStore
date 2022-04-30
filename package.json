@@ -8,6 +8,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.9",
     "nodemon": "^2.0.15",
+    "systeminformation": "^5.11.14",
     "validator": "^13.7.0"
   },
   "name": "booking-ticket-backend",
