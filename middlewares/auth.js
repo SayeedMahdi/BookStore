@@ -35,7 +35,7 @@ const adminAuth = asyncWrapper(async (req, res, next) => {
     //show comment if token is correct
     user = await userExist(result.email);
     flag = result.password === user.password;
-
+    console.log("user ",user," flag",flag, user.role);
     //show every thing is correct
     if (user && flag && result && user.role) {
       next();
