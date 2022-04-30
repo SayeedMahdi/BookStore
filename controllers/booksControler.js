@@ -1,7 +1,7 @@
 const modelbook = require("../Models/BooksModel");
 const asyncWrapper = require("../middlewares/async");
-const { verify, userExist } = require("../middlewares/emailMidles");
-const { default: mongoose } = require("mongoose");
+const { verify} = require("../middlewares/emailMidles");
+const userModel = require("../Models/userMode");
 const buyBookModel = require("../Models/BuyModel");
 
 const insertbook = asyncWrapper(async (req, res) => {
@@ -45,6 +45,7 @@ const deletebook = asyncWrapper(async (req, res) => {
   const id = req.query._id;
   console.log(req.query);
   const result = await modelbook.findOneAndDelete({ _id: id });
+  console.log("book",result);
   if (!result) {
     res.status(404);
   }
@@ -67,6 +68,33 @@ const buyBook = asyncWrapper(async (req, res) => {
     res.status(200).json(books);
    
 });
+//all new book wich bought
+const SoldBooks =asyncWrapper(async(req,res) =>{
+ const resule =await buyBookModel.aggregate([
+  {
+    $lookup:{
+      from:"users",
+      localField:"userId",
+      foreignField:"_id",
+      as:"userId"
+    }
+  },
+   [
+  {$unwind:"$bookId"},
+  {$lookup:{
+    from:"books",
+    localField:"bookId",
+    foreignField:"_id",
+    as:"bookId"
+  }},
+  
+ ]]);
+
+    
+    res.status(200).json(resule);
+    // prints "The author is Ian Fleming"
+  
+});
 
 //exports
 module.exports = {
@@ -75,4 +103,5 @@ module.exports = {
   search,
   deletebook,
   buyBook,
+  SoldBooks
 };

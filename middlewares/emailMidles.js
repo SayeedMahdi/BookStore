@@ -36,7 +36,7 @@ const comare =(password,userPassword) =>{
 
 
 const userExist =async (email) => {
-  const user = await userModel.findOne({ email: email }).select("password email username").lean(); 
+  const user = await userModel.findOne({ email: email }).select("password email username role").lean(); 
   return user;
 };
 

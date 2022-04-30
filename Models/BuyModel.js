@@ -16,4 +16,4 @@ const bookSchema = new mongoose.Schema({
     },
     address:String
 });
-module.exports = mongoose.model("buyMode",bookSchema);
+module.exports = mongoose.model("buybooks",bookSchema);

@@ -13,6 +13,6 @@ router
 router.route("/Book/search").get(BookControler.search);
 router.route("/User").post(userConteroler.insertUser)
 router.route("/User/login").post(userConteroler.login);
-router.route("/buyBook").post(authControl,BookControler.buyBook)
+router.route("/buyBook").post(authControl,BookControler.buyBook).get(BookControler.SoldBooks);
 
 module.exports = router;
