@@ -3,12 +3,12 @@ const bookSchema = new mongoose.Schema({
     bookId:[{
         type:mongoose.Types.ObjectId,
         required:true,
-        ref:"Books"
+        ref:"books"
     }],
     userId:{
         type:mongoose.Types.ObjectId,
         required:true,
-        ref:"Users"
+        ref:"users"
     },
     phone:{
         type:String,

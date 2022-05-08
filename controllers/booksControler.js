@@ -79,8 +79,8 @@ const SoldBooks =asyncWrapper(async(req,res) =>{
       as:"userId"
     }
   },
-   [
-  {$unwind:"$bookId"},
+   
+ 
   {$lookup:{
     from:"books",
     localField:"bookId",
@@ -88,7 +88,7 @@ const SoldBooks =asyncWrapper(async(req,res) =>{
     as:"bookId"
   }},
   
- ]]);
+ ]);
 
     
     res.status(200).json(resule);
